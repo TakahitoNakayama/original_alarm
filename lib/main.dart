@@ -42,6 +42,7 @@ class AlarmPage extends StatefulWidget {
 class _AlarmPageState extends State<AlarmPage> {
 
   final isSelected = [false,false];
+  var isSelectedAlarm = true;
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +54,14 @@ class _AlarmPageState extends State<AlarmPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.pinkAccent,
         onPressed: () {},
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.grey,
+        color: Colors.pinkAccent,
         notchMargin: 6.0,
-        shape: AutomaticNotchedShape(
+        shape: const AutomaticNotchedShape(
           RoundedRectangleBorder(),
           StadiumBorder(
             side: BorderSide(),
@@ -71,54 +72,51 @@ class _AlarmPageState extends State<AlarmPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              width: _screenSize.width * 0.5,
-              // color: Colors.black,
+              width: _screenSize.width * 0.4,
               decoration: BoxDecoration(
-                color: Colors.grey,
-                border: Border(
-                  right: BorderSide()
-                )
+                color:  isSelectedAlarm
+                    ? Colors.pinkAccent
+                    : Colors.grey,
               ),
               child: TextButton.icon(
-                label: Text(
-                  'あらーむ',
+                label: const Text(
+                  'アラーム',
                   style: TextStyle(
                       color: Colors.white
                   ),
                 ),
-                icon: Icon(
-                  Icons.person_outline,
+                icon: const Icon(
+                  Icons.access_alarm,
                   color: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  isSelectedAlarm = true;
+                  setState(() {});
+                },
               ),
             ),
-            // Container(
-            //   height: 30,
-            //   width: 1,
-            //   color: Colors.white,
-            // ),
             Container(
               width: _screenSize.width * 0.4,
-              // color: Colors.pinkAccent,
               decoration: BoxDecoration(
-                  color: Colors.pinkAccent,
-                  border: Border(
-                      left: BorderSide()
-                  )
+                color:  isSelectedAlarm
+                    ? Colors.grey
+                    : Colors.pinkAccent,
               ),
               child: TextButton.icon(
-                label: Text(
-                  'あらーむ',
+                label: const Text(
+                  'タイマー',
                   style: TextStyle(
                     color: Colors.white
                   ),
                 ),
-                icon: Icon(
-                  Icons.person_outline,
+                icon: const Icon(
+                  Icons.av_timer,
                   color: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  isSelectedAlarm = false;
+                  setState(() {});
+                },
               ),
             ),
           ],
@@ -126,7 +124,6 @@ class _AlarmPageState extends State<AlarmPage> {
       ),
       body: Center(
         child: Column(
-
         ),
       ),
     );
