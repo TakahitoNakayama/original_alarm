@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'alarm_route.dart';
+import 'timer_route.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(
+    child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,45 +20,31 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const AlarmPage(title: 'アラーム'),
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(),
     );
   }
 }
 
-class AlarmPage extends StatefulWidget {
-  const AlarmPage({Key? key, required this.title}) : super(key: key);
-
-
-  final String title;
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<AlarmPage> createState() => _AlarmPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _AlarmPageState extends State<AlarmPage> {
+class _HomePageState extends State<HomePage> {
 
   final isSelected = [false,false];
   var isSelectedAlarm = true;
 
   @override
   Widget build(BuildContext context) {
-    var _screenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pinkAccent,
@@ -72,7 +65,7 @@ class _AlarmPageState extends State<AlarmPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              width: _screenSize.width * 0.4,
+              width: screenSize.width * 0.4,
               decoration: BoxDecoration(
                 color:  isSelectedAlarm
                     ? Colors.pinkAccent
@@ -96,7 +89,7 @@ class _AlarmPageState extends State<AlarmPage> {
               ),
             ),
             Container(
-              width: _screenSize.width * 0.4,
+              width: screenSize.width * 0.4,
               decoration: BoxDecoration(
                 color:  isSelectedAlarm
                     ? Colors.grey
@@ -122,10 +115,9 @@ class _AlarmPageState extends State<AlarmPage> {
           ],
         ),
       ),
-      body: Center(
-        child: Column(
-        ),
-      ),
+      body: isSelectedAlarm
+              ? const AlarmPage()
+              : const TimerPage(),
     );
   }
 }
