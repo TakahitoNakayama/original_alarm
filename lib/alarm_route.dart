@@ -17,52 +17,6 @@ class AlarmPage extends HookConsumerWidget {
       body: Column(
         children: [
           SizedBox(
-            height: 160,
-            width: double.infinity,
-            child: Card(
-              color: Colors.white, // Card自体の色
-              margin: const EdgeInsets.all(30),
-              elevation: 8, // 影の離れ具合
-              shadowColor: Colors.black ,// 影の色
-              shape: RoundedRectangleBorder( // 枠線を変更できる
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: InkWell(
-                onTap: () {},
-                child: ListTile(
-                  dense: true,
-                  leading: Checkbox(
-                      value: true,
-                      onChanged: (newValue) {
-
-                      },
-                    ),
-                    title: const Text(
-                      '06:30',
-                      style: TextStyle(
-                          fontSize: 17
-                      ),
-                    ),
-                    subtitle: const Text(
-                      'スヌーズ：あり\n'
-                          '繰り返し：毎日\n'
-                          'サウンド：　　\n'
-                          'バイブレーション：あり',
-                      style: TextStyle(
-                      fontSize: 10
-                    ),
-                  ),
-                  trailing: IconButton(
-                    onPressed: () {  },
-                    icon: const Icon(
-                      Icons.more_vert,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
             // height: 160,
             width: double.infinity,
             child: Card(
