@@ -13,6 +13,14 @@ class AlarmPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('アラーム'),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.timer_off_outlined
+            ),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: Column(
         children: [
