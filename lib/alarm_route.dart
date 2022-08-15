@@ -8,7 +8,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class AlarmPage extends HookConsumerWidget {
   const AlarmPage({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -30,21 +29,25 @@ class AlarmPage extends HookConsumerWidget {
               child: InkWell(
                 onTap: () {},
                 child: ExpansionTile(
-                  tilePadding: const EdgeInsets.only(right: 8),
+                  tilePadding: const EdgeInsets.symmetric(horizontal: 8),
                   childrenPadding: const EdgeInsets.all(8),
-                  leading: Checkbox(
-                    value: true,
-                    onChanged: (newValue) {
+                  expandedAlignment: Alignment.centerLeft,
+                  leading: Transform.scale(
+                    scale: 1.3,
+                    child: Checkbox(
+                      value: true,
+                      onChanged: (newValue) {
 
-                    },
-                    materialTapTargetSize: MaterialTapTargetSize.padded,
+                      },
+                      materialTapTargetSize: MaterialTapTargetSize.padded,
+                    ),
                   ),
-                  trailing:
-                  DropdownButtonHideUnderline(
+                  trailing: DropdownButtonHideUnderline(
                     child: DropdownButton2(
                       customButton: const Icon(
                         Icons.more_vert,
                         size: 40,
+                        color: Colors.black,
                       ),
                       customItemsIndexes: const [4],
                         items: <String>['編集', 'コピー', '移動', '削除']
@@ -74,13 +77,15 @@ class AlarmPage extends HookConsumerWidget {
                     style: TextStyle(
                       fontSize: 23,
                       fontWeight: FontWeight.bold,
+                      color: Colors.black
                     ),
                   ),
                   subtitle: const Text(
                     '繰り返し：'
-                    '月火水木金土日',
+                    '月 火 水 木 金 土 日',
                     style: TextStyle(
-                        fontSize: 13
+                      fontSize: 13,
+                      color: Colors.black
                     ),
                   ),
                   onExpansionChanged: (bool changed) {
