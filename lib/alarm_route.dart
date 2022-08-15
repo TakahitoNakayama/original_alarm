@@ -1,4 +1,5 @@
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
@@ -17,11 +18,10 @@ class AlarmPage extends HookConsumerWidget {
       body: Column(
         children: [
           SizedBox(
-            // height: 160,
             width: double.infinity,
             child: Card(
               color: Colors.white, // Card自体の色
-              margin: const EdgeInsets.all(30),
+              margin: const EdgeInsets.all(8),
               elevation: 8, // 影の離れ具合
               shadowColor: Colors.black ,// 影の色
               shape: RoundedRectangleBorder( // 枠線を変更できる
@@ -30,8 +30,8 @@ class AlarmPage extends HookConsumerWidget {
               child: InkWell(
                 onTap: () {},
                 child: ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  childrenPadding: EdgeInsets.all(8),
+                  tilePadding: const EdgeInsets.only(right: 8),
+                  childrenPadding: const EdgeInsets.all(8),
                   leading: Checkbox(
                     value: true,
                     onChanged: (newValue) {
@@ -39,22 +39,48 @@ class AlarmPage extends HookConsumerWidget {
                     },
                     materialTapTargetSize: MaterialTapTargetSize.padded,
                   ),
-                  trailing: IconButton(
-                    onPressed: () {  },
-                    icon: const Icon(
-                      Icons.more_vert,
+                  trailing:
+                  DropdownButtonHideUnderline(
+                    child: DropdownButton2(
+                      customButton: const Icon(
+                        Icons.more_vert,
+                        size: 40,
+                      ),
+                      customItemsIndexes: const [4],
+                        items: <String>['編集', 'コピー', '移動', '削除']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                      onChanged: (value) {
+
+                      },
+                      itemHeight: 70,
+                      itemPadding: const EdgeInsets.only(left: 16, right: 16),
+                      dropdownWidth: 90,
+                      dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
+                      dropdownDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color: Colors.white,
+                      ),
+                      dropdownElevation: 8,
+                      offset: const Offset(30, 0),
                     ),
                   ),
                   title: const Text(
                     '06:30',
                     style: TextStyle(
-                        fontSize: 17
+                      fontSize: 23,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   subtitle: const Text(
-                    '繰り返し：月火水木金土日',
+                    '繰り返し：'
+                    '月火水木金土日',
                     style: TextStyle(
-                        fontSize: 10
+                        fontSize: 13
                     ),
                   ),
                   onExpansionChanged: (bool changed) {
