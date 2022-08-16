@@ -20,6 +20,12 @@ class AlarmPage extends HookConsumerWidget {
             ),
             onPressed: () {},
           ),
+          IconButton(
+            icon: const Icon(
+                Icons.edit_notifications_outlined
+            ),
+            onPressed: () {},
+          ),
         ],
       ),
       body: Column(
